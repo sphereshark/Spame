@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Minecraft Font -->
+<!-- <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet"> -->
+
+<style>
+body {
+    margin: 0;
+    background: #87befd;
+    font-family: 'Minecraft', monospace;
+}
+
+/* レイアウト */
+.menu {
+    display: flex;
+    gap: 20px;
+    padding: 15px;
+}
+
+/* スマホ時 */
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+    }
+}
+
+/* パネル */
+.panel {
+    width: 220px;
+    background: rgba(30,40,55,0.9);
+}
+
+/* スマホで横幅いっぱい */
+@media (max-width: 768px) {
+    .panel {
+        width: 100%;
+    }
+}
+
+/* タイトル */
+.panel-title {
+    padding: 10px;
+    color: orange;
+    border-top: 3px solid orange;
+}
+
+/* 項目（タップしやすく） */
+.item {
+    padding: 14px;
+    color: #9aa7b3;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* スマホはさらに大きく */
+@media (max-width: 768px) {
+    .item {
+        padding: 18px;
+        font-size: 18px;
+    }
+}
+
+/* 選択 */
+.item.active {
+    background: rgba(100,150,220,0.6);
+    color: white;
+}
+
+/* 説明 */
+.desc {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.9);
+    border-top: 2px solid orange;
+    padding: 15px;
+    color: white;
+}
+
+/* PC時だけ左下 */
+@media (min-width: 769px) {
+    .desc {
+        width: 300px;
+        bottom: 20px;
+        left: 20px;
+        border: 2px solid orange;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="menu">
+
+    <div class="panel">
+        <div class="panel-title">ItemSet Ver1.2</div>
+        <div class="item" onclick="selectItem(this,'tomenu')">ToMenu</div>
+        <div class="item" onclick="selectItem(this,'tohomemenu')">ToHomeMenu</div>
+        <h3>  </h3>
+        <div class="panel-title">Render</div>
+        <div class="item" onclick="selectItem(this,'armor')">ArmorHUD</div>
+        <div class="item" onclick="selectItem(this,'debug')">DebugText</div>
+        <div class="item" onclick="selectItem(this,'itemph')">ItemPhysics</div>
+        <h3> </h3>
+        <div class="panel-title">Misc</div>
+        <div class="item" onclick="selectItem(this,'anticsm')">AntiCSM</div>
+        <div class="item" onclick="selectItem(this,'antispawer')">AntiSpawner</div>
+        <div class="item" onclick="selectItem(this,'antitexture')">AntiTexture</div>
+        <div class="item" onclick="selectItem(this,'micmute')">MicMute</div>
+        <div class="item" onclick="selectItem(this,'skincopy')">SkinCopy</div>
+    </div>
+    <div class="panel">
+        <div class="panel-title">ModMenu</div>
+        <div class="item" onclick="selectItem(this,'cinomenu')">cinoMenu</div>
+        <div class="item" onclick="selectItem(this,'speedboots')">SpeedBoots</div>
+        <div class="item" onclick="selectItem(this,'custompotion')">CustomPotion</div>
+        <div class="item" onclick="selectItem(this,'chestmenu')">ChestMenu</div>
+        <h3> </h3>
+        <div class="panel-title">AddTag</div>
+        <div class="item" onclick="selectItem(this,'unbreakable')">Unbreakable</div>
+        <div class="item" onclick="selectItem(this,'hideflag')">HideFlag</div>
+        <div class="item" onclick="selectItem(this,'deletedflag')">DeletedFlag</div>
+    </div>
+    <div class="panel">
+        <div class="panel-title">Movement</div>
+        <div class="item" onclick="selectItem(this,'fly')">Fly</div>
+        <div class="item" onclick="selectItem(this,'bhop')">BunnyHop</div>
+        <div class="item" onclick="selectItem(this,'speed')">Speed</div>
+        <div class="item" onclick="selectItem(this,'antikb')">AntiKB</div>
+        <h3> </h3>
+        <div class="panel-title">Items</div>
+        <div class="item" onclick="selectItem(this,'itemstack')">Itemstack</div>
+        <div class="item" onclick="selectItem(this,'swapoffhand')">SwapOffHand</div>
+    </div>
+
+</div>
+
+<div class="desc" id="desc">
+    項目をタップすると説明が出る
+</div>
+
+<script>
+const descriptions = {
+    tomenu: "メインメニューに移動",
+    tohomemenu: "ホームメニューに移動",
+    armor: "防具表示HUD",
+    debug: "デバッグ情報表示",
+    itemph: "アイテムをぺらぺらに",
+    anticsm: "CSMの表示を非表示",
+    antispawer: "クラッシュスポナーを回避",
+    antitexture: "カスタムテクスチャを無効化",
+    micmute: "自身のマイクをミュート",
+    skincopy: "目の前のスキンをコピー",
+    cinomenu: "防具タブにカスタムモッドメニューを追加",
+    speedboots: "スピードが付与された金色のブーツを追加",
+    custompotion: "改造されまくったポーションを追加",
+    chestmenu: "ルートテーブルからチェストを開けるメニューを追加",
+    unbreakable: "手に持っているアイテムに耐久(壊れない)タグを付与",
+    hideflag: "手に持っているアイテムに効果を隠すタグを付与",
+    deletedflag: "手に持っているアイテムに効果を見せるタグを付与",
+    fly: "空を飛べるようになる",
+    bhop: "うさぎ飛びができるようになる",
+    speed: "移動速度を上げる",
+    itemstack: "手に持っているアイテムの数を64個にする",
+    swapoffhand: "左手にアイテムを移動する。十字キー左 & ZR",
+    antikb: "ノックバックを無効化"
+};
+
+function selectItem(el, key) {
+    document.querySelectorAll(".item").forEach(i => i.classList.remove("active"));
+    el.classList.add("active");
+    document.getElementById("desc").innerText = descriptions[key];
+}
+</script>
+<h3>       ItemSetClient Ver2.2 </h3>
+</body>
+</html>
