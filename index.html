@@ -62,6 +62,12 @@ body {
         padding: 18px;
         font-size: 18px;
     }
+    .container {
+        flex-direction: column;
+    }
+    .right-panel {
+        width: 100%;
+    }
 }
 
 /* 選択 */
@@ -81,22 +87,52 @@ body {
     padding: 15px;
     color: white;
 }
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* 右側 */
+.right-panel {
+    width: 300px;
+    padding: 20px;
+    color: white;
+}
+
+/* アイコン */
+.icon {
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 50%;
+}
+
+/* 作者名 */
+.author {
+    margin-top: 10px;
+    color: #ccc;
+}
 
 /* PC時だけ左下 */
-@media (min-width: 769px) {
+/* @media (min-width: 769px) {
     .desc {
         width: 300px;
         bottom: 20px;
         left: 20px;
         border: 2px solid orange;
     }
-}
+} */
 </style>
 </head>
 
 <body>
+<div class="container">
 
-<div class="menu">
+    <!-- 左：メニュー -->
+    <div class="menu">
+        <!-- そのまま既存のpanel全部 -->
 
     <div class="panel">
         <div class="panel-title">ItemSet Ver1.2</div>
@@ -149,7 +185,26 @@ body {
 <div class="desc" id="desc">
     項目をタップすると説明が出る
 </div>
+    </div>
 
+    <!-- 右：情報エリア -->
+    <div class="right-panel">
+        <img src="icon.png" class="icon">
+
+        <div class="info">
+            <h3>
+                ItemSetClient Ver2.2<br>
+                十字キー上+LRでメニュー表示<br>
+                公式サーバーでしか配布してないです。<br>
+                PinkDiamondと一緒に使えます。<br>
+                2026/04/02 更新
+            </h3>
+
+            <p class="author">製作者: cino</p>
+        </div>
+    </div>
+
+</div>
 <script>
 const descriptions = {
     tomenu: "メインメニューに移動",
@@ -187,6 +242,6 @@ function selectItem(el, key) {
     document.getElementById("desc").innerText = descriptions[key];
 }
 </script>
-<h3>       ItemSetClient Ver2.2 </h3>
+
 </body>
 </html>
