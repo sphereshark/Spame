@@ -179,15 +179,19 @@
         <div class="panel-title en">Misc</div>
         <div class="item" onclick="selectItem(this,'anticsm')">AntiCSM</div>
         <div class="item" onclick="selectItem(this,'antispawer')">AntiSpawner</div>
+        <div class="item" onclick="selectItem(this,'antiswim')">AntiSwim</div>
         <div class="item" onclick="selectItem(this,'antitexture')">AntiTexture</div>
         <div class="item" onclick="selectItem(this,'armor')">ArmorHUD</div>
         <div class="item" onclick="selectItem(this,'debug')">DebugText</div>
+        <div class="item" onclick="selectItem(this,'exporange')">ExpOrange</div>
+        <div class="item" onclick="selectItem(this,'fishinginv')">FishingInvi</div>
+        <div class="item" onclick="selectItem(this,'liquidxray')">LiquidXRay</div>
         <div class="item" onclick="selectItem(this,'itemph')">ItemPhysics</div>
         <div class="item" onclick="selectItem(this,'micmute')">MicMute</div>
+        <div class="item" onclick="selectItem(this,'potionmgmg')">PotionEat</div>
+        <div class="item" onclick="selectItem(this,'minimenu')">MiniMenu</div>
         <div class="item" onclick="selectItem(this,'skincopy')">SkinCopy</div>
         <div class="item" onclick="selectItem(this,'capecopy')">CapeCopy</div>
-        <div class="item" onclick="selectItem(this,'potionmgmg')">Potion:mgmg</div>
-        <div class="item" onclick="selectItem(this,'minimenu')">MiniMenu</div>
         <div class="item" onclick="selectItem(this,'capejuu')">2p: Cape[10]</div>
     </div>
     <div class="panel">
@@ -204,6 +208,9 @@
         <div class="item" onclick="selectItem(this,'hideflag')">HideFlag</div>
         <div class="item" onclick="selectItem(this,'deletedflag')">DeletedFlag</div>
         <div class="item" onclick="selectItem(this,'costreset')">CostReset</div>
+        <div class="item" onclick="selectItem(this,'deletedtag')">DeletedTag</div>
+        <div class="item" onclick="selectItem(this,'enchant')">Enchant</div>
+        <div class="item" onclick="selectItem(this,'enchant2')">-Enchant</div>
     </div>
 
 </div>
@@ -227,6 +234,9 @@
             </h3>
 
             <p class="author">製作者: cino</p>
+            <h3>
+                <br>
+            </h3>
         </div>
     </div>
 
@@ -269,7 +279,14 @@ const descriptions = {
     costreset: "エンチャントコストのリセット",
     potionmgmg: "飲むポーションを食べるモーションにします",
     minimenu: "インベントリーやアイテム欄が小さくなる",
-    capejuu: "2ページ目にマントが各10枚"
+    capejuu: "2ページ目にマントが各10枚",
+    deletedtag: "持ってるアイテムのタグをリセット",
+    antiswim: "泳げない代わりに速くなる",
+    exporange: "経験値がオレンジに",
+    fishinginv: "釣り竿の邪魔なのを無効",
+    liquidxray: "液体がレントゲン",
+    enchant: "手に持っているアイテムにエンチャントができるようになる(複数追加可能)",
+    enchant2: "[十字キー下&LR]:エンチャント選択, [十字キー左&LR]:レベル選択, [十字キー左&ZR]:レベルMAX, [十字キー上&ZL:実行], [ZR&R]:リセット"
 };
 
 function selectItem(el, key) {
