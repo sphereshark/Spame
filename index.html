@@ -150,7 +150,7 @@
         <!-- そのまま既存のpanel全部 -->
 
     <div class="panel">
-        <div class="panel-title en">CinoCli Ver2.5.4</div>
+        <div class="panel-title en">CinoCli Ver2.5.7</div>
         <!-- <div class="item" onclick="selectItem(this,'tomenu')">ToMenu</div>
         <div class="item" onclick="selectItem(this,'tohomemenu')">ToHomeMenu</div> -->
         <h3>  </h3>
@@ -177,6 +177,7 @@
         <div class="item" onclick="selectItem(this,'eggwarsvil')">EggWarsMenu</div>
         <div class="item" onclick="selectItem(this,'spawnermenu')">SpawMenu</div>
         <div class="item" onclick="selectItem(this,'unbreakmenu')">UnbreakMenu</div>
+        <div class="item" onclick="selectItem(this,'countryflag')">CountryFlag</div>
         <div class="item" onclick="selectItem(this,'redecoration')">2p:Re:Decoration</div>
         <div class="item" onclick="selectItem(this,'rematerial')">2p:Re:Material</div>
     </div>
@@ -198,15 +199,18 @@
         <div class="item" onclick="selectItem(this,'skincopy')">SkinCopy</div>
         <div class="item" onclick="selectItem(this,'capecopy')">CapeCopy</div>
         <div class="item" onclick="selectItem(this,'capejuu')">2p: Cape[10]</div>
+        <div class="item" onclick="selectItem(this,'nocape')">NoCape</div>
     </div>
     <div class="panel">
         <div class="panel-title en">Items</div>
         <div class="item" onclick="selectItem(this,'autoeat')">AutoEat</div>
+        <div class="item" onclick="selectItem(this,'autogapple')">AutoGapple</div>
         <div class="item" onclick="selectItem(this,'inventorywalk')">InvenWalk</div>
         <div class="item" onclick="selectItem(this,'swapoffhand')">SwapOffHand</div>
         <div class="item" onclick="selectItem(this,'itemstack')">Itemstack</div>
         <div class="item" onclick="selectItem(this,'inventoryclean')">InvenClean</div>
         <div class="item" onclick="selectItem(this,'reinbooama')">RainbowArmor</div>
+        <div class="item" onclick="selectItem(this,'anibana')">AniBana</div>
         <div class="item" onclick="selectItem(this,'itemcopy')">ItemCopy</div>
     </div>
     <div class="panel">
@@ -233,11 +237,11 @@
 
         <div class="info">
             <h3>
-                CinoClient Ver2.5.4<br>
+                CinoClient Ver2.5.7<br>
                 十字キー上+LRでメニュー表示<br>
                 公式サーバーでしか配布してないです。<br>
                 PinkDiamondと一緒に使えます。<br>
-                2026/04/18 更新
+                2026/04/19 更新
             </h3>
 
             <p class="author">製作者: cino</p>
@@ -300,7 +304,12 @@ const descriptions = {
     slowboots: "マイナススピードが付与された金色のブーツを追加",
     customitemenu: "ワンパンとドロップ増加の剣のみ",
     autoeat: "左手の食べ物勝手に食べてくれる",
-    llockshulker: "鍵付きシュルカー(シュルカーボックスの場所の隣に鍵あります)"
+    llockshulker: "鍵付きシュルカー(シュルカーボックスの場所の隣に鍵あります)",
+    nocape: "マントを外す",
+    countryflag: "色んな国の国旗メニュー",
+    autogapple: "左手に上位金リンゴが一つでもあったら自動で食べて自動で64個にしてくれます",
+    anibana: "頭にアニメーションの旗が追加されます"
+
 };
 
 function selectItem(el, key) {
