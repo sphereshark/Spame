@@ -2,334 +2,149 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>CinoClient</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Minecraft Font -->
-<!-- <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet"> -->
-
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Kosugi+Maru&display=swap" rel="stylesheet">
-
+<title>IdGen</title>
 <style>
-/* body {
-    margin: 0;
-    background: #87befd;
-    font-family: 'Minecraft', monospace;
-} */
- body {
-    margin: 0;
-    background: #87befd;
-
-    /* 日本語優先 → かわいい */
-    font-family: 'Kosugi Maru', sans-serif;
+body {
+  font-family: "Segoe UI", "Hiragino Sans", sans-serif;
+  background: #fff;
+  color: #333;
+  margin: 0;
+  padding: 20px;
 }
 
-/* 英語だけやわらかく */
-.en {
-    font-family: 'Nunito', sans-serif;
+h2 {
+  color: #e94e77;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-/* レイアウト */
-.menu {
-    display: flex;
-    gap: 20px;
-    padding: 15px;
-}
-
-/* スマホ時 */
-@media (max-width: 768px) {
-    .menu {
-        flex-direction: column;
-    }
-}
-
-/* パネル */
-.panel {
-    width: 220px;
-    background: rgba(30,40,55,0.9);
-}
-
-/* スマホで横幅いっぱい */
-@media (max-width: 768px) {
-    .panel {
-        width: 100%;
-    }
-}
-
-/* タイトル */
-.panel-title {
-    padding: 10px;
-    color: orange;
-    border-top: 3px solid orange;
-}
-
-/* 項目（タップしやすく） */
-.item {
-    padding: 14px;
-    color: #9aa7b3;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-/* スマホはさらに大きく */
-@media (max-width: 768px) {
-    .item {
-        padding: 18px;
-        font-size: 18px;
-    }
-    .container {
-        flex-direction: column;
-    }
-    .right-panel {
-        width: 100%;
-    }
-}
-
-/* 選択 */
-.item.active {
-    background: rgba(100,150,220,0.6);
-    color: white;
-}
-
-/* 説明 */
-.desc {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(0,0,0,0.9);
-    border-top: 2px solid orange;
-    padding: 15px;
-    color: white;
-}
 .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
 }
 
-/* 右側 */
-.right-panel {
-    width: 300px;
-    padding: 20px;
-    color: white;
+textarea, .output {
+  width: 100%;
+  max-width: 500px;
+  height: 200px;
+  border-radius: 12px;
+  border: 2px solid #f7b6c2;
+  padding: 10px;
+  font-size: 15px;
+  resize: none;
+  box-sizing: border-box;
+  background: #fff;
 }
 
-/* アイコン */
-.icon {
-    width: 80px;
-    height: 80px;
-    display: block;
-    margin-bottom: 10px;
-    border-radius: 50%;
+.output {
+  background: #fff0f5;
+  overflow-y: auto;
+  white-space: pre-wrap;
 }
 
-/* 作者名 */
-.author {
-    margin-top: 10px;
-    color: #ccc;
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
 }
 
-/* PC時だけ左下 */
-/* @media (min-width: 769px) {
-    .desc {
-        width: 300px;
-        bottom: 20px;
-        left: 20px;
-        border: 2px solid orange;
-    }
-} */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  background-color: #f7b6c2;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background-color: #f38ca6;
+}
+
+button:active {
+  background-color: #e6728e;
+}
+
+@media (min-width: 700px) {
+  .container {
+    flex-wrap: nowrap;
+  }
+  textarea, .output {
+    width: 48%;
+    height: 300px;
+  }
+}
 </style>
 </head>
-
 <body>
+<h2>[スプラの名前] 変更コード 作成ツール</h2>
+
 <div class="container">
-
-    <!-- 左：メニュー -->
-    <div class="menu">
-        <!-- そのまま既存のpanel全部 -->
-
-    <div class="panel">
-        <div class="panel-title en">CinoCli Ver2.6.1</div>
-        <div class="item" onclick="selectItem(this,'tomenu')">ToMenu</div>
-        <div class="item" onclick="selectItem(this,'clearlog')">ClearLog</div>
-        <div class="item" onclick="selectItem(this,'uicolor')">UI Color</div>
-        <!-- <div class="item" onclick="selectItem(this,'tohomemenu')">ToHomeMenu</div> -->
-        <h3>  </h3>
-        <div class="panel-title en">Movement</div>
-        <div class="item" onclick="selectItem(this,'fly')">Fly</div>
-        <div class="item" onclick="selectItem(this,'bhop')">BunnyHop</div>
-        <div class="item" onclick="selectItem(this,'speed')">Speed</div>
-        <div class="item" onclick="selectItem(this,'antikb')">AntiKB</div>
-        <h3> </h3>
-        <div class="panel-title en">World</div>
-        <div class="item" onclick="selectItem(this,'antikick')">AntiKick</div>
-        <div class="item" onclick="selectItem(this,'chestelar')">ChestStealer</div>
-
-    </div>
-    <div class="panel">
-        <div class="panel-title en">ItemMenu</div>
-        <div class="item" onclick="selectItem(this,'hackitemenu')">HackItem</div>
-        <div class="item" onclick="selectItem(this,'cinomenu')">cinoMenu</div>
-        <div class="item" onclick="selectItem(this,'unbreakmenu')">Unbreak</div>
-        <div class="item" onclick="selectItem(this,'customitemenu')">CustomItem</div>
-        <div class="item" onclick="selectItem(this,'custompotion')">Potion</div>
-        <div class="item" onclick="selectItem(this,'chestmenu')">Chest</div>
-        <div class="item" onclick="selectItem(this,'speedboots')">SpeedBoots</div>
-        <div class="item" onclick="selectItem(this,'slowboots')">SlowBoots</div>
-        <div class="item" onclick="selectItem(this,'countryflag')">CountryFlag</div>
-        <div class="item" onclick="selectItem(this,'llockshulker')">LockShulker</div>
-        <div class="item" onclick="selectItem(this,'spawnermenu')">Spawner</div>
-        <div class="item" onclick="selectItem(this,'eggwarsvil')">EggWars</div>
-        <!-- <div class="item" onclick="selectItem(this,'itemcount')">2p:ItemCount</div> -->
-        <div class="item" onclick="selectItem(this,'redecoration')">2p:Re:Decoration</div>
-        <div class="item" onclick="selectItem(this,'rematerial')">2p:Re:Material</div>
-    </div>
-    <div class="panel">
-        <div class="panel-title en">Misc</div>
-        <div class="item" onclick="selectItem(this,'anticsm')">AntiCSM</div>
-        <div class="item" onclick="selectItem(this,'antisteler')">AntiStealer</div>
-        <div class="item" onclick="selectItem(this,'antispawer')">AntiSpawner</div>
-        <div class="item" onclick="selectItem(this,'antiswim')">AntiSwim</div>
-        <div class="item" onclick="selectItem(this,'antitexture')">AntiTexture</div>
-        <div class="item" onclick="selectItem(this,'armor')">ArmorHUD</div>
-        <div class="item" onclick="selectItem(this,'debug')">DebugText</div>
-        <div class="item" onclick="selectItem(this,'exporange')">ExpOrange</div>
-        <div class="item" onclick="selectItem(this,'fishinginv')">FishingInvi</div>
-        <div class="item" onclick="selectItem(this,'liquidxray')">LiquidXRay</div>
-        <div class="item" onclick="selectItem(this,'itemph')">ItemPhysics</div>
-        <div class="item" onclick="selectItem(this,'micmute')">MicMute</div>
-        <div class="item" onclick="selectItem(this,'levelnorm')">LevelNorm</div>
-        <!-- <div class="item" onclick="selectItem(this,'potionmgmg')">PotionEat</div>
-        <div class="item" onclick="selectItem(this,'minimenu')">MiniMenu</div> -->
-        <div class="item" onclick="selectItem(this,'skincopy')">SkinCopy</div>
-        <div class="item" onclick="selectItem(this,'capecopy')">CapeCopy</div>
-        <div class="item" onclick="selectItem(this,'capejuu')">2p: Cape[10]</div>
-        <div class="item" onclick="selectItem(this,'nocape')">NoCape</div>
-    </div>
-    <div class="panel">
-        <div class="panel-title en">Items</div>
-        <div class="item" onclick="selectItem(this,'autoeat')">AutoEat</div>
-        <div class="item" onclick="selectItem(this,'autogapple')">AutoGapple</div>
-        <div class="item" onclick="selectItem(this,'inventorywalk')">InvenWalk</div>
-        <div class="item" onclick="selectItem(this,'swapoffhand')">SwapOffHand</div>
-        <div class="item" onclick="selectItem(this,'itemstack')">Itemstack</div>
-        <div class="item" onclick="selectItem(this,'inventoryclean')">InvenClean</div>
-        <div class="item" onclick="selectItem(this,'reinbooama')">RainbowArmor</div>
-        <div class="item" onclick="selectItem(this,'anibana')">AniBana</div>
-        <div class="item" onclick="selectItem(this,'itemcopy')">ItemCopy</div>
-    </div>
-    <div class="panel">
-        <div class="panel-title en">AddTag</div>
-        <div class="item" onclick="selectItem(this,'deletedtag')">DisableTag</div>
-        <div class="item" onclick="selectItem(this,'unbreakable')">Unbreakable</div>
-        <div class="item" onclick="selectItem(this,'costreset')">CostReset</div>
-        <div class="item" onclick="selectItem(this,'costerror')">CostError</div>
-        <div class="item" onclick="selectItem(this,'enchant')">Enchant</div>
-        <div class="item" onclick="selectItem(this,'enchant2')">-Enchant</div>
-        <div class="item" onclick="selectItem(this,'hideflag')">HideFlag</div>
-        <div class="item" onclick="selectItem(this,'deletedflag')">DisableFlag</div>
-    </div>
-
+  <textarea id="inputText" placeholder="ここに変更したい文字を入力..."></textarea>
+  <div id="outputText" class="output"></div>
 </div>
 
-<div class="desc" id="desc">
-    項目をタップすると説明が出る
+<div class="buttons">
+  <button id="copyBtn">コピー</button>
+  <button id="clearBtn">リセット</button>
+  <button id="exitBtn">閉じる</button>
 </div>
-    </div>
 
-    <!-- 右：情報エリア -->
-    <div class="right-panel">
-        <img src="icon.png" class="icon">
-
-        <div class="info">
-            <h3>
-                CinoClient Ver2.6.1<br>
-                十字キー上+LRでメニュー表示<br>
-                公式サーバーでしか配布してないです。<br>
-                PinkDiamondと一緒に使えます。<br>
-                2026/04/24 更新
-            </h3>
-
-            <p class="author">製作者: cino</p>
-            <h3>
-                <br>
-            </h3>
-        </div>
-    </div>
-
-</div>
 <script>
-const descriptions = {
-    // tomenu: "メインメニューに移動",
-    // tohomemenu: "ホームメニューに移動",
-    armor: "防具表示HUD",
-    debug: "デバッグ情報表示",
-    itemph: "アイテムをぺらぺらに",
-    anticsm: "CSMの表示を非表示",
-    antispawer: "クラッシュスポナーを回避",
-    antitexture: "カスタムテクスチャを無効化",
-    micmute: "自身のマイクをミュート",
-    skincopy: "目の前のスキンをコピー",
-    cinomenu: "防具タブにカスタムモッドメニューを追加",
-    speedboots: "スピードが付与された金色のブーツを追加",
-    custompotion: "改造されまくったポーションを追加",
-    chestmenu: "ルートテーブルからチェストを開けるメニューを追加",
-    stackmenu: "クリエ欄からのアイテムスタック",
-    unbreakable: "手に持っているアイテムに耐久(壊れない)タグを付与",
-    hideflag: "手に持っているアイテムに効果を隠すタグを付与",
-    deletedflag: "手に持っているアイテムに効果を見せるタグを付与",
-    fly: "空を飛べるようになる",
-    bhop: "うさぎ飛びができるようになる",
-    speed: "移動速度を上げる",
-    antikb: "ノックバックを無効化",
-    itemstack: "手に持っているアイテムの数を64個にする",
-    inventoryclean: "持ち物全部リセット",
-    swapoffhand: "左手にアイテムを移動:十字キー下&ZL",
-    antikick: "追放を無効化",
-    capecopy: "目の前のマントコピー",
-    hackitemenu: "[材料タブ]普通は出せないアイテムを表示",
-    eggwarsvil: "[材料タブ]エッグウォーズの村人を16色出せる",
-    spawnermenu: "[材料タブ]スポーンエッグにないモブを出せる",
-    inventorywalk: "インベントリーを開きながら歩くことができる",
-    reinbooama: "革装備が虹色に光る防具を装備する",
-    unbreakmenu: "無限耐久のモッドメニュー",
-    costreset: "エンチャントコストのリセット",
-    potionmgmg: "飲むポーションを食べるモーションにします",
-    minimenu: "インベントリーやアイテム欄が小さくなる",
-    capejuu: "2ページ目にマントが各10枚",
-    deletedtag: "持ってるアイテムのタグをリセット",
-    antiswim: "泳げない代わりに速くなる",
-    exporange: "経験値がオレンジに",
-    fishinginv: "釣り竿の邪魔なのを無効",
-    liquidxray: "液体がレントゲン",
-    enchant: "手に持っているアイテムにエンチャントができるようになる(複数追加可能)",
-    enchant2: "[十字キー下&LR]:エンチャント選択, [十字キー左&LR]:レベル選択, [十字キー左&ZR]:レベルMAX, [十字キー上&ZL:実行], [ZR&R]:リセット",
-    rematerial: "材料タブの解除",
-    redecoration: "飾りタブの解除",
-    itemcopy: "手に持ってるアイテムを飾りタブにコピーできます",
-    slowboots: "マイナススピードが付与された金色のブーツを追加",
-    customitemenu: "いろんなアイテムが入ってるよ^^",
-    autoeat: "左手の食べ物勝手に食べてくれる",
-    llockshulker: "鍵付きシュルカー(シュルカーボックスの場所の隣に鍵あります)",
-    nocape: "マントを外す",
-    countryflag: "色んな国の国旗メニュー",
-    autogapple: "左手に上位金リンゴが一つでもあったら自動で食べて自動で64個にしてくれます",
-    anibana: "頭にアニメーションの旗が追加されます",
-    clearlog: "画面に出てるログを削除",
-    uicolor: "UIの色を変更できる",
-    antisteler: "チェストスティーラー無効",
-    levelnorm: "レベル正規化",
-    chestelar: "一括取得(Pure式)",
-    costerror: "手に持っているアイテムに金床で編集できなくなるタグを追加"
-};
+function convertText(text) {
+  let result = "30000000 106EB0A0\n10000000 50000000\n";
+  let lenHex = ((text.length * 4 + 4 + 65536).toString(16)).toUpperCase().padStart(5, '0').substring(1,5);
+  result += "0110" + lenHex + " 00000164\n";
 
-function selectItem(el, key) {
-    document.querySelectorAll(".item").forEach(i => i.classList.remove("active"));
-    el.classList.add("active");
-    document.getElementById("desc").innerText = descriptions[key];
+  let i = 0;
+  for (; i < text.length; i++) {
+    let code = text.charCodeAt(i);
+    let hex = code.toString(16).padStart(4, '0').toUpperCase();
+    result += hex;
+    if ((i + 1) % 4 === 0) result += "\n";
+    else if ((i + 1) % 2 === 0) result += " ";
+  }
+
+  if ((i + 1) % 4 === 3) result += "000000FF";
+  else if ((i + 1) % 4 === 2) result += "0000 000000FF";
+  else if ((i + 1) % 4 === 1) result += "00000000 000000FF";
+  else if ((i + 1) % 4 === 0) result += "0000\n00000000 000000FF";
+
+  return result;
 }
-</script>
 
+const input = document.getElementById("inputText");
+const output = document.getElementById("outputText");
+const copyBtn = document.getElementById("copyBtn");
+const clearBtn = document.getElementById("clearBtn");
+const exitBtn = document.getElementById("exitBtn");
+
+input.addEventListener("input", () => {
+  output.textContent = convertText(input.value);
+});
+
+copyBtn.addEventListener("click", () => {
+  navigator.clipboard.writeText(output.textContent);
+  copyBtn.textContent = "コピー済み！";
+  setTimeout(() => copyBtn.textContent = "コピー", 1500);
+});
+
+clearBtn.addEventListener("click", () => {
+  input.value = "";
+  output.textContent = "";
+});
+
+exitBtn.addEventListener("click", () => {
+  if (confirm("タブを閉じますか？")) window.close();
+});
+</script>
 </body>
 </html>
